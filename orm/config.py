@@ -16,7 +16,7 @@ def generador_sesion():
     try:
         #equivalente a return sesion pero de manera segura
         yield sesion 
-    finally:
+    finally: 
         sesion.close()
 
 BaseClass = declarative_base()
