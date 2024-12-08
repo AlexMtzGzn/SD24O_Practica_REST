@@ -13,7 +13,7 @@ from orm.config import generador_sesion # Generador de sesiones
 app = FastAPI()
 
 
-@app.get("/alumnos")
+@app.get("/alumnos") 
 def leer_alumnos(sesion: Session = Depends(generador_sesion)):
     print("API consultando a los alumnos.")
     alumnos = repo.regresa_Alumnos(sesion)
