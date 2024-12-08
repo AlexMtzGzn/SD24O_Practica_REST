@@ -16,18 +16,20 @@ app = FastAPI()
 
 # get("/alumnos”)
 @app.get("/alumnos")
-def lista_alumnos(session:Session=Depends(generador_sesion)):
+def lista_alumnos(sesion:Session=Depends(generador_sesion)):
     print("API consultando a los alumnos.")
-    return repo.devuelve_alumnos(session)
+    return repo.devuelve_alumnos(sesion)
 
 @app.get("/alumnos/{id}")
 def leer_alumno(id: int, sesion: Session = Depends(generador_sesion)):
     print("API consultando a alumno.")
     alumno = repo.regresa_Alumno_ID(sesion, id_alumno=id)
-    if not alumno:
-        return {"error": "Alumno no encontrado"}
     return alumno
 
+@app.get("/fotos")
+def leer_Fotos(sesion:Session = Depends(generador_sesion)):
+    print("API consultando fotos.") 
+    return repo.regresa_Fotos(sesion)   
 
 @app.get("/alumnos/{id}/calificaciones")
 def leer_calificaciones(id: int, sesion: Session = Depends(generador_sesion)):
