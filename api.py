@@ -29,7 +29,12 @@ def leer_alumno(id: int, sesion: Session = Depends(generador_sesion)):
 @app.get("/fotos")
 def leer_Fotos(sesion:Session = Depends(generador_sesion)):
     print("API consultando fotos.") 
-    return repo.regresa_Fotos(sesion)   
+    return repo.regresa_Fotos(sesion)
+
+@app.get("/fotos/{id}")
+def leer_fotos_id(id:int, sesion: Session = Depends(generador_sesion)):
+    print("API consultando fotos por id.")
+    return repo.regresa_Foto_ID(sesion,id_foto=id) 
 
 @app.get("/alumnos/{id}/calificaciones")
 def leer_calificaciones(id: int, sesion: Session = Depends(generador_sesion)):
