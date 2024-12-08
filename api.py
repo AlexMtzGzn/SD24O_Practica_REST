@@ -18,7 +18,7 @@ app = FastAPI()
 @app.get("/alumnos")
 def lista_alumnos(sesion:Session=Depends(generador_sesion)):
     print("API consultando a los alumnos.")
-    return repo.devuelve_alumnos(sesion)
+    return repo.regresa_Alumnos(sesion)
 
 @app.get("/alumnos/{id}")
 def leer_alumno(id: int, sesion: Session = Depends(generador_sesion)):
@@ -28,13 +28,23 @@ def leer_alumno(id: int, sesion: Session = Depends(generador_sesion)):
 
 @app.get("/fotos")
 def leer_Fotos(sesion:Session = Depends(generador_sesion)):
-    print("API consultando fotos.") 
-    return repo.regresa_Fotos(sesion)
+    print("API consultando fotos.")
+    fotos=repo.regresa_Fotos(sesion) 
+    return fotos 
+
 
 @app.get("/fotos/{id}")
 def leer_fotos_id(id:int, sesion: Session = Depends(generador_sesion)):
     print("API consultando fotos por id.")
-    return repo.regresa_Foto_ID(sesion,id_foto=id) 
+    foto = repo.regresa_Foto_ID(sesion,id_foto=id)
+    return  foto
+
+@app.get("/alumnos/{id}/calificaciones")
+def leer_calificaciones(id: int, sesion: Session = Depends(generador_sesion)):
+    print(f"API consultando calificaciones del alumno {id}.")
+    calificaciones = repo.regresa_calificaciones_ID_Alumno(sesion, id_alumno=id)
+    return calificaciones
+
 
 @app.get("/alumnos/{id}/calificaciones")
 def leer_calificaciones(id: int, sesion: Session = Depends(generador_sesion)):
