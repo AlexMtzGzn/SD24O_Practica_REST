@@ -42,6 +42,8 @@ def leer_fotos_id(id: int, sesion: Session = Depends(generador_sesion)):
 def leer_foto_id_alumno(id: int, alumno: int, sesion: Session = Depends(generador_sesion)):
     print(f"API consultando foto {id} del alumno {alumno}")
     foto = repo.regresa_Foto_ID_Alumno(sesion, id_foto=id, id_alumno=alumno)
+    if not foto:
+        raise HTTPException(status_code=404, detail="Foto no encontrada")
     return foto
 
 @app.get("/calificaciones")

@@ -18,10 +18,9 @@ def regresa_Foto_ID(sesion:Session, id_foto:int):
     print("SELECT * FROM app.fotos WHERE id = ", id_foto)
     return sesion.query(modelos.Foto).filter(modelos.Foto.id == id_foto).first()
 
-def regresa_Foto_ID_Alumno(sesion:Session, id_alumno):
-    print("SELECT * FROM app.fotos WHERE id_alumnos = ", id_alumno)
-    return sesion.query(modelos.Foto).filter(modelos.Alumno.id == id_alumno).first()
-
+def regresa_Foto_ID_Alumno(sesion: Session, id_foto: int, id_alumno: int):
+    print(f"SELECT * FROM app.fotos WHERE id = {id_foto} AND id_alumnos = {id_alumno}")
+    return sesion.query(modelos.Foto).filter(and_(modelos.Foto.id == id_foto, modelos.Foto.id_alumno == id_alumno)).first()
 def regresa_Calificaciones(sesion:Session):
     print("SELECT * FROM app.calificaciones")
     return sesion.query(modelos.Calificacion).all()
@@ -30,14 +29,19 @@ def regresa_Calificaciones_ID(sesion:Session, id_calificacion:int):
     print("SELECT * FROM app.calificaciones WHERE id = ", id_calificacion)
     return sesion.query(modelos.Calificacion).filter(modelos.Calificacion.id == id_calificacion).first()
 
-def regresa_Calificaciones_ID_Alumno(session:Session, id_alumno:int):
+def regresa_Calificaciones_ID_Alumno(sesion: Session, id_alumno: int):
     print("SELECT * FROM app.calificaciones WHERE id_alumnos = ", id_alumno)
-    return session.query(modelos.Calificacion).filter(modelos.Alumno.id == id_alumno).first()
+    return sesion.query(modelos.Calificacion).filter(modelos.Calificacion.id_alumno == id_alumno).all()
 
-def elimina_Alumno_ID(sesion:Session, id_alumno:int):
-    print ("DELETE FROM app.alumnos WHERE id_alumnos = ", id_alumno)
-    sesion.delete(sesion.query(modelos.Alumno).filter(modelos.Alumno.id == id_usuario).first())
-    sesion.commit()
+def elimina_Alumno_ID(sesion: Session, id_alumno: int):
+    print("DELETE FROM app.alumnos WHERE id = ", id_alumno)
+    alumno = sesion.query(modelos.Alumno).filter(modelos.Alumno.id == id_alumno).first()
+    if alumno:
+        sesion.delete(alumno)
+        sesion.commit()
+    else:
+        print("Alumno no encontrado.")
+
 
 def elimina_Calificacion_ID(sesion: Session, id_alumno: int):
     print("DELETE FROM app.calificaciones WHERE id_alumnos = ", id_alumno)
