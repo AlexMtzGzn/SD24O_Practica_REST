@@ -45,7 +45,7 @@ def elimina_Alumno_ID(sesion: Session, id_alumno: int):
 def elimina_Calificacion_ID(sesion: Session, id_calificacion: int):
     print("DELETE FROM app.calificaciones WHERE id = ", id_calificacion)
     sesion.query(modelos.Calificacion).filter(modelos.Calificacion.id == id_calificacion).delete()
-    sesion.commit()
+    sesion.commit() 
 
 def elimina_Foto_ID(db: Session, id: int):
     print("DELETE FROM app.fotos WHERE id = ", id)
