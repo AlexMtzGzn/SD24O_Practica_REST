@@ -34,10 +34,12 @@ def regresa_calificaciones_ID_Alumno(sesion:Session, id_alumno:int):
     print("SELECT * FROM app.calificaciones WHERE id_alumnos = ", id_alumno)
     return sesion.query(modelos.Calificacion).filter(modelos.Alumno.id == id_alumno).first()
 
-def calificaciones_por_id_alumno(session:Session, id_alumno:int):
+def regresa_Calificaciones_ID_Alumno(session:Session, id_alumno:int):
     print("SELECT * FROM app.calificaciones WHERE id_alumnos = ", id_alumno)
     return session.query(modelos.Calificacion).filter(modelos.Alumno.id == id_alumno).first()
 
+def elimina_Alumno_ID(session:Session, id_alumno:int):
+    print ("DELETE FROM app.alumnos WHERE id_alumnos = ", id_alumno)
 """▪ SELECT * FROM app.alumnos
 ▪ SELECT * FROM app.alumnos
 ▪ SELECT * FROM app.alumnos WHERE id={id_al}
