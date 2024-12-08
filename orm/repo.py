@@ -41,7 +41,8 @@ def regresa_Calificaciones_ID_Alumno(session:Session, id_alumno:int):
 def elimina_Alumno_ID(sesion:Session, id_alumno:int):
     print ("DELETE FROM app.alumnos WHERE id_alumnos = ", id_alumno)
     sesion.delete(sesion.query(modelos.Alumno).filter(modelos.Alumno.id == id_usuario).first())
-    
+    sesion.commit()
+
 def elimina_Calificacion_ID(sesion: Session, id_alumno: int):
     print("DELETE FROM app.calificaciones WHERE id_alumnos = ", id_alumno)
     sesion.query(modelos.Calificacion).filter(modelos.Calificacion.id_alumno == id_alumno).delete()
