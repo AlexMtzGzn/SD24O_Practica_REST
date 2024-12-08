@@ -12,7 +12,7 @@ from orm.config import generador_sesion # Generador de sesiones
 # Se crea el servidor
 app = FastAPI()
 
-# GET ALUMNOS
+
 @app.get("/alumnos")
 def leer_alumnos(sesion: Session = Depends(generador_sesion)):
     print("API consultando a los alumnos.")
@@ -25,7 +25,7 @@ def leer_alumno(id: int, sesion: Session = Depends(generador_sesion)):
     alumno = repo.regresa_Alumno_ID(sesion, id_alumno=id)
     return alumno
 
-# FOTOS ENDPOINTS
+
 @app.get("/fotos")
 def leer_Fotos(sesion: Session = Depends(generador_sesion)):
     print("API consultando fotos.")
@@ -58,7 +58,7 @@ def leer_calificaciones_id(id: int, sesion: Session = Depends(generador_sesion))
     calificacion = repo.regresa_Calificaciones_ID(sesion, id_foto=id)
     return calificacion
 
-# CALIFICACIONES ENDPOINTS
+
 @app.get("/alumnos/{id}/calificaciones")
 def leer_calificaciones(id: int, sesion: Session = Depends(generador_sesion)):
     print(f"API consultando calificaciones del alumno {id}.")
@@ -71,7 +71,7 @@ def leer_fotos_alumno(id: int, sesion: Session = Depends(generador_sesion)):
     fotos = repo.regresa_Foto_ID_Alumno(sesion, id_alumno=id)
     return fotos
 
-# DELETE ENDPOINTS
+
 @app.delete("/alumnos/{id}")
 def eliminar_alumno(id: int, sesion: Session = Depends(generador_sesion)):
     alumno = repo.regresa_Alumno_ID(sesion, id_alumno=id)
