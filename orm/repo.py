@@ -6,9 +6,9 @@ def regresa_Alumnos(sesion:Session):
     print("SELECT * FROM app.alumnos")
     return sesion.query(modelos.Alumno).all()
 
-def regresa_Alumno_ID(sesion:Session,id_alumno:int):
+def regresa_Alumno_ID(sesion: Session, id_alumno: int):
     print("SELECT * FROM app.alumnos WHERE id = ", id_alumno)
-    return sesion.query(modelos.Alumno).filter(modelos.Alumno.id == id_usuario).first()
+    return sesion.query(modelos.Alumno).filter(modelos.Alumno.id == id_alumno).first()
 
 def regresa_Fotos(sesion:Session):
     print("SELECT * FROM app.fotos")
