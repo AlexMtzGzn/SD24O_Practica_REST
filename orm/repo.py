@@ -18,6 +18,9 @@ def regresa_Foto_ID(sesion:Session, id_foto:int):
     print("SELECT * FROM app.fotos WHERE id = ", id_foto)
     return sesion.query(modelos.Foto).filter(modelos.Foto.id == id_foto).first()
 
+def regresa_Foto_ID_Alumno(sesion:Session, id_alumno):
+    print("SELECT * FROM app.fotos WHERE id_alumnos = ", id_alumno)
+    return sesion.query(modelos.Foto).filter(modelos.Alumno.id == id_alumno).first()
 
 """▪ SELECT * FROM app.alumnos
 ▪ SELECT * FROM app.alumnos WHERE id={id_al}
