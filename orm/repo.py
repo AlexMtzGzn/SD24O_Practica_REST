@@ -42,10 +42,9 @@ def elimina_Alumno_ID(sesion: Session, id_alumno: int):
     else:
         print("Alumno no encontrado.")
 
-
-def elimina_Calificacion_ID(sesion: Session, id_alumno: int):
-    print("DELETE FROM app.calificaciones WHERE id_alumnos = ", id_alumno)
-    sesion.query(modelos.Calificacion).filter(modelos.Calificacion.id_alumno == id_alumno).delete()
+def elimina_Calificacion_ID(sesion: Session, id_calificacion: int):
+    print("DELETE FROM app.calificaciones WHERE id = ", id_calificacion)
+    sesion.query(modelos.Calificacion).filter(modelos.Calificacion.id == id_calificacion).delete()
     sesion.commit()
 
 def elimina_Foto_ID(db: Session, id: int):

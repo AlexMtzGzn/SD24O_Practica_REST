@@ -52,11 +52,14 @@ def leer_alumnos(sesion: Session = Depends(generador_sesion)):
     calificaciones = repo.regresa_Calificaciones(sesion)
     return calificaciones
 
-@app.get("/calificaciones/{id}")
-def leer_calificaciones_id(id: int, sesion: Session = Depends(generador_sesion)):
-    print("API consultando calificciones por id.")
-    calificacion = repo.regresa_Calificaciones_ID(sesion, id_foto=id)
-    return calificacion
+@app.delete("/calificaciones/{id}")
+def eliminar_calificacion(id: int, sesion: Session = Depends(generador_sesion)):
+    print(f"API eliminando calificación {id}")
+    calificacion = repo.regresa_Calificaciones_ID(sesion, id_calificacion=id)
+    if not calificacion:
+        raise HTTPException(status_code=404, detail="Calificación no encontrada")
+    repo.elimina_Calificacion_ID(sesion, id_calificacion=id)
+    return {"message": "Calificación eliminada"}
 
 
 @app.get("/alumnos/{id}/calificaciones")
