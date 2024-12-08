@@ -23,28 +23,31 @@ def lista_alumnos(session:Session=Depends(generador_sesion)):
 @app.get("/alumnos/{id}")
 def leer_alumno(id: int, sesion: Session = Depends(generador_sesion)):
     print("API consultando a alumno.")
-    alumno = repo.regresa_Alumno_ID(sesion, id)
+    alumno = repo.regresa_Alumno_ID(sesion, id_alumno=id)
+    if not alumno:
+        return {"error": "Alumno no encontrado"}
     return alumno
 
+
 @app.get("/alumnos/{id}/calificaciones")
-def read_calificaciones(id: int, db: Session = Depends(get_db)):
-    return get_calificaciones_by_alumno(db, id)
+def leer_calificaciones(id: int, sesion: Session = Depends(generador_sesion)):
+    return get_calificaciones_by_alumno(sesion, id)
 
 @app.get("/alumnos/{id}/fotos")
-def read_fotos(id: int, db: Session = Depends(get_db)):
-    return get_fotos_by_alumno(db, id)
+def read_fotos(id: int, sesion: Session = Depends(generador_sesion)):
+    return get_fotos_by_alumno(sesion, id)
 
 @app.delete("/alumnos/{id}")
-def delete_alumno(id: int, db: Session = Depends(get_db)):
-    delete_alumno_by_id(db, id)
+def delete_alumno(id: int, sesion: Session = Depends(generador_sesion)):
+    delete_alumno_by_id(sesion, id)
     return {"message": "Alumno eliminado"}
 
 @app.delete("/fotos/{id}")
-def delete_foto(id: int, db: Session = Depends(get_db)):
-    delete_foto_by_id(db, id)
+def delete_foto(id: int, sesion: Session = Depends(generador_sesion)):
+    delete_foto_by_id(sesion, id)
     return {"message": "Foto eliminada"}
 
 @app.delete("/calificaciones/{id}")
-def delete_calificacion(id: int, db: Session = Depends(get_db)):
-    delete_calificacion_by_id(db, id)
+def delete_calificacion(id: int, sesion: Session = Depends(generador_sesion)):
+    delete_calificacion_by_id(sesion, id)
     return {"message": "Calificación eliminada"}
