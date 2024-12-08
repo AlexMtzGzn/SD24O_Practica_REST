@@ -44,11 +44,23 @@ def leer_foto_id_alumno(id: int, alumno: int, sesion: Session = Depends(generado
     foto = repo.regresa_Foto_ID_Alumno(sesion, id_foto=id, id_alumno=alumno)
     return foto
 
+@app.get("/calificaciones")
+def leer_alumnos(sesion: Session = Depends(generador_sesion)):
+    print("API consultando a las calificaciones.")
+    calificaciones = repo.regresa_Calificaciones(sesion)
+    return calificaciones
+
+@app.get("/calificaciones/{id}")
+def leer_calificaciones_id(id: int, sesion: Session = Depends(generador_sesion)):
+    print("API consultando calificciones por id.")
+    calificacion = repo.regresa_Calificaciones_ID(sesion, id_foto=id)
+    return calificacion
+
 # CALIFICACIONES ENDPOINTS
 @app.get("/alumnos/{id}/calificaciones")
 def leer_calificaciones(id: int, sesion: Session = Depends(generador_sesion)):
     print(f"API consultando calificaciones del alumno {id}.")
-    calificaciones = repo.regresa_calificaciones_ID_Alumno(sesion, id_alumno=id)
+    calificaciones = repo.regresa_Calificaciones_ID_Alumno(sesion, id_alumno=id)
     return calificaciones
 
 @app.get("/alumnos/{id}/fotos")
