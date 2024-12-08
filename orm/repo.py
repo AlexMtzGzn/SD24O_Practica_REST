@@ -38,8 +38,20 @@ def regresa_Calificaciones_ID_Alumno(session:Session, id_alumno:int):
     print("SELECT * FROM app.calificaciones WHERE id_alumnos = ", id_alumno)
     return session.query(modelos.Calificacion).filter(modelos.Alumno.id == id_alumno).first()
 
-def elimina_Alumno_ID(session:Session, id_alumno:int):
+def elimina_Alumno_ID(sesion:Session, id_alumno:int):
     print ("DELETE FROM app.alumnos WHERE id_alumnos = ", id_alumno)
+    sesion.delete(sesion.query(modelos.Alumno).filter(modelos.Alumno.id == id_usuario).first())
+    
+def elimina_Calificacion_ID(sesion: Session, id_alumno: int):
+    print("DELETE FROM app.calificaciones WHERE id_alumnos = ", id_alumno)
+    sesion.query(modelos.Calificacion).filter(modelos.Calificacion.id_alumno == id_alumno).delete()
+    sesion.commit()
+
+def elimina_Foto_ID(db: Session, id: int):
+    print("DELETE FROM app.fotos WHERE id = ", id)
+    db.query(modelos.Foto).filter(modelos.Foto.id == id).delete()
+    db.commit()
+
 """▪ SELECT * FROM app.alumnos
 ▪ SELECT * FROM app.alumnos
 ▪ SELECT * FROM app.alumnos WHERE id={id_al}
