@@ -33,6 +33,9 @@ def regresa_Calificaciones_ID_Alumno(sesion: Session, id_alumno: int):
     print("SELECT * FROM app.calificaciones WHERE id_alumnos = ", id_alumno)
     return sesion.query(modelos.Calificacion).filter(modelos.Calificacion.id_alumno == id_alumno).all()
 
+def actualizar_usuario(sesison:Session,d_usuairio:int,usr_squema:esquema.usuarioBase):
+    
+    
 def elimina_Alumno_ID(sesion: Session, id_alumno: int):
     print("DELETE FROM app.alumnos WHERE id = ", id_alumno)
     alumno = sesion.query(modelos.Alumno).filter(modelos.Alumno.id == id_alumno).first()
