@@ -8,3 +8,9 @@ class AlumnoBase(BaseModel):
     trimestre:str
     email:str
     password:str
+
+
+class calificacioneBase(BaseModel):
+    id_alumno:int
+    uea:str
+    calificacion:str
