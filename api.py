@@ -112,11 +112,16 @@ o put("/fotos/{id}")"""
 
 #o post("/alumnos”)
 @app.post("/alumnos")
-def guarda_alumno(alumno:esquemas.alumnoBase, sesion:Session=Depends(generador_sesion)):
+def guarda_Alumno(alumno:esquemas.alumnoBase, sesion:Session=Depends(generador_sesion)):
     print(alumno)
     return repo.guarda_alumno(sesion, alumno)
 
 #o put("/alumnos/{id})
 @app.put("/alumnos/{id}")
-def actualiza_alumno(id:int, datos_alumno:esquemas.alumnoBase, sesion:Session=Depends(generador_sesion)):
+def actualiza_Alumno(id:int, datos_alumno:esquemas.alumnoBase, sesion:Session=Depends(generador_sesion)):
     return repo.actualiza_alumno(sesion, id, datos_alumno)
+
+#o post("/alumnos/{id}/calificaciones")
+@app.post("/alumnos/{id}/calificaciones")
+def guarda_Calificacion_ID_Alumno(id:int, calificacion:esquemas.CalificacioneBase, sesion:Session=Depends(generador_sesion)):
+    return repo.guarda_Calificacion_ID_Alumno(sesion, id, calificacion)

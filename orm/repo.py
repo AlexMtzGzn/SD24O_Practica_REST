@@ -68,7 +68,7 @@ def elimina_Foto_ID(sesion: Session, id: int):
 
 # Guardamos al alumno
 
-def inserta_alumno(session:Session, alumno_nuevo:esquemas.alumnoBase): 
+def inserta_Alumno(session:Session, alumno_nuevo:esquemas.alumnoBase): 
     alumno_bd = modelos.Alumno()
     alumno_bd.nombre = alumno_nuevo.nombre
     alumno_bd.edad = alumno_nuevo.edad
@@ -83,7 +83,7 @@ def inserta_alumno(session:Session, alumno_nuevo:esquemas.alumnoBase):
     session.refresh(alumno_bd)
     return alumno_bd
 
-def actualiza_alumno(sesion:Session, id_alumno:int, alumno_esquema:esquemas.alumnoBase): 
+def actualiza_Alumno(sesion:Session, id_alumno:int, alumno_esquema:esquemas.alumnoBase): 
     alumno_db = regresa_Alumno_ID(sesion, id_alumno)
     if alumno_db is not None:
         alumno_db.nombre = alumno_esquema.nombre
@@ -98,5 +98,20 @@ def actualiza_alumno(sesion:Session, id_alumno:int, alumno_esquema:esquemas.alum
         print(alumno_esquema)
         return alumno_esquema
     else:
-        respuesta = {"mensaje" : "No existe el alumno"}
+        respuesta = {"mensaje" : "Alumno no encontrado"}
+        return respuesta
+
+def guarda_Calificacion_ID_Alumno(sesion:Session, id_alumno:int, calificacion_nueva:esquemas.CalificacioneBase):
+    alumno = regresa_Alumno_ID(sesion, id_alumno)
+    calificacion_bd = modelos.Calificacion()
+    if alumno is not None:
+        calificacion_bd.id_alumno = id_alumno
+        calificacion_bd.uea = calificacion_nueva.uea
+        calificacion_bd.calificacion = calificacion_nueva.calificacion
+        sesion.add(calificacion_bd)
+        sesion.commit()
+        sesion.refresh(calificacion_bd)
+        return calificacion_bd
+    else:
+        respuesta = {"mensaje" : "Alumno no encontrado"}
         return respuesta
