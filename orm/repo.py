@@ -41,7 +41,8 @@ def elimina_Alumno_ID(sesion: Session, id_alumno: int):
         sesion.delete(alumno)
         sesion.commit()
     else:
-        print("Alumno no encontrado.")
+        respuesta = {"mensaje" : "Alumno no encontrado"}
+        return respuesta
 
 def elimina_Calificacion_ID(sesion: Session, id_calificacion: int):
     print("DELETE FROM app.calificaciones WHERE id = ", id_calificacion)
