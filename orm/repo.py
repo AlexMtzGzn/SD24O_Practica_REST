@@ -1,3 +1,4 @@
+import orm.esquemas as esquemas
 import orm.modelos as modelos #accedemos a modelos.py
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
