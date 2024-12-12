@@ -115,3 +115,17 @@ def guarda_Calificacion_ID_Alumno(sesion:Session, id_alumno:int, calificacion_nu
     else:
         respuesta = {"mensaje" : "Alumno no encontrado"}
         return respuesta
+
+def actualiza_Calificacion_ID(sesion:Session, id_calificacion:int, calificacion_esquema:esquemas.CalificacioneBase):
+    calificacion_bd = regresa_Calificaciones_ID(sesion, id_calificacion)
+    if calificacion_bd is not None:
+        calificacion_bd.id_alumno = calificacion_esquema.id_alumno
+        calificacion_bd.uea = calificacion_esquema.uea
+        calificacion_bd.calificacion = calificacion_esquema.calificacion
+        sesion.commit()
+        sesion.refresh(calificacion_bd)
+        print(calificacion_esquema)
+        return calificacion_esquema
+    else:
+        respuesta = {"mensaje" : "Calificación no encontrada"}
+        return respuesta
