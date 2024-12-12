@@ -97,7 +97,7 @@ def actualiza_Alumno(sesion:Session, id_alumno:int, alumno_esquema:esquemas.alum
         sesion.commit()
         sesion.refresh(alumno_db)
         print(alumno_esquema)
-        return alumno_esquema
+        return alumno_esquema 
     else:
         respuesta = {"mensaje" : "Alumno no encontrado"}
         return respuesta
