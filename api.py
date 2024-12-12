@@ -3,9 +3,6 @@ from typing import Optional
 from pydantic import BaseModel
 import orm.repo as repo
 import orm.esquemas as esquemas
-import shutil
-import os
-import uuid
 import orm.repo as repo # Función para hacer las consultas a la BD
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
@@ -123,20 +120,20 @@ def actualiza_Alumno(id:int, datos_alumno:esquemas.alumnoBase, sesion:Session=De
 
 #o post("/alumnos/{id}/calificaciones")
 @app.post("/alumnos/{id}/calificaciones")
-def guarda_Calificacion_ID_Alumno(id:int, calificacion:esquemas.CalificacioneBase, sesion:Session=Depends(generador_sesion)):
+def guarda_Calificacion_ID_Alumno(id:int, calificacion:esquemas.calificacioneBase, sesion:Session=Depends(generador_sesion)):
     return repo.guarda_Calificacion_ID_Alumno(sesion, id, calificacion)
 
 #o put("/calificaciones/{id}")
 @app.put("/calificaciones/{id}")
-def actualiza_Calificacion_ID(id:int, datos_calificacion:esquemas.CalificacioneBase, sesion:Session=Depends(generador_sesion)):
+def actualiza_Calificacion_ID(id:int, datos_calificacion:esquemas.calificacioneBase, sesion:Session=Depends(generador_sesion)):
     return repo.actualiza_Calificacion_ID(sesion, id, datos_calificacion)
 
 #o post("/alumnos/{id}/fotos")
 @app.post("/alumnos/{id}/fotos")
-def guarda_Calificacion_ID_Alumno(id:int, foto:esquemas.FotoBase, sesion:Session=Depends(generador_sesion)):
+def guarda_Calificacion_ID_Alumno(id:int, foto:esquemas.fotoBase, sesion:Session=Depends(generador_sesion)):
     return repo.guarda_Foto_ID_Alumno(sesion, id, foto)
 
 #o put("/fotos/{id}")
 @app.put("/fotos/{id}")
-def actualiza_Foto_ID(id:int, datos_fotos:esquemas.FotoBase, sesion:Session=Depends(generador_sesion)):
+def actualiza_Foto_ID(id:int, datos_fotos:esquemas.fotoBase, sesion:Session=Depends(generador_sesion)):
     return repo.actualiza_Foto_ID(sesion, id, datos_fotos)

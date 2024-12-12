@@ -102,7 +102,7 @@ def actualiza_Alumno(sesion:Session, id_alumno:int, alumno_esquema:esquemas.alum
         respuesta = {"mensaje" : "Alumno no encontrado"}
         return respuesta
 
-def guarda_Calificacion_ID_Alumno(sesion:Session, id_alumno:int, calificacion_nueva:esquemas.CalificacioneBase):
+def guarda_Calificacion_ID_Alumno(sesion:Session, id_alumno:int, calificacion_nueva:esquemas.calificacionBase):
     alumno = regresa_Alumno_ID(sesion, id_alumno)
     calificacion_bd = modelos.Calificacion()
     if alumno is not None:
@@ -117,7 +117,7 @@ def guarda_Calificacion_ID_Alumno(sesion:Session, id_alumno:int, calificacion_nu
         respuesta = {"mensaje" : "Alumno no encontrado"}
         return respuesta
 
-def actualiza_Calificacion_ID(sesion:Session, id_calificacion:int, calificacion_esquema:esquemas.CalificacioneBase):
+def actualiza_Calificacion_ID(sesion:Session, id_calificacion:int, calificacion_esquema:esquemas.calificacionBase):
     calificacion_bd = regresa_Calificaciones_ID(sesion, id_calificacion)
     if calificacion_bd is not None:
         calificacion_bd.id_alumno = calificacion_esquema.id_alumno
@@ -131,7 +131,7 @@ def actualiza_Calificacion_ID(sesion:Session, id_calificacion:int, calificacion_
         respuesta = {"mensaje" : "Calificación no encontrada"}
         return respuesta
 
-def guarda_Foto_ID_Alumno(sesion:Session, id_alumno:int, foto_nueva:esquemas.FotoBase):
+def guarda_Foto_ID_Alumno(sesion:Session, id_alumno:int, foto_nueva:esquemas.fotoBase):
     foto = regresa_Alumno_ID(sesion, id_alumno)
     foto_bd = modelos.Foto()
     if foto is not None:
@@ -147,7 +147,7 @@ def guarda_Foto_ID_Alumno(sesion:Session, id_alumno:int, foto_nueva:esquemas.Fot
         respuesta = {"mensaje" : "Alumno no encontrado"}
         return respuesta
 
-def actualiza_Foto_ID(sesion:Session, id_foto, foto_esquema:esquemas.FotoBase):
+def actualiza_Foto_ID(sesion:Session, id_foto, foto_esquema:esquemas.fotoBase):
     foto_bd = regresa_Foto_ID(sesion, id_foto)
     if foto_bd is not None:
         foto_bd.id_alumno = foto_esquema.id_alumno

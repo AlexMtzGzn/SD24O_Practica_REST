@@ -10,7 +10,7 @@ class alumnoBase(BaseModel):
     password:str
 
 
-class calificacioneBase(BaseModel):
+class calificacionBase(BaseModel):
     id_alumno:int
     uea:str
     calificacion:str
