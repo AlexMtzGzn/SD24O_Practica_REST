@@ -98,7 +98,7 @@ def guarda_Alumno(alumno:esquemas.alumnoBase, sesion:Session=Depends(generador_s
 #o put("/alumnos/{id})
 @app.put("/alumnos/{id}")
 def actualiza_Alumno(id_alumno:int, datos_alumno:esquemas.alumnoBase, sesion:Session=Depends(generador_sesion)):
-    return repo.actualiza_alumno(sesion, id_alumno, datos_alumno)
+    return repo.actualiza_Alumno(sesion, id_alumno, datos_alumno)
 
 #o post("/alumnos/{id}/calificaciones")
 @app.post("/alumnos/{id}/calificaciones")
