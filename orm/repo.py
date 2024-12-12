@@ -145,3 +145,19 @@ def guarda_Foto_ID_Alumno(sesion:Session, id_alumno:int, foto_nueva:esquemas.Fot
     else:
         respuesta = {"mensaje" : "Alumno no encontrado"}
         return respuesta
+
+def actualiza_Foto_ID(sesion:Session, id_foto, foto_esquema:esquemas.FotoBase):
+    foto_bd = regresa_Foto_ID(sesion, id_foto)
+    if foto_bd is not None:
+        foto_bd.id_alumno = foto_esquema.id_alumno
+        foto_bd.titulo = foto_esquema.titulo
+        foto_bd.descripcion = foto_esquema.descripcion
+        foto_bd.ruta = foto_esquema.ruta
+        sesion.commit()
+        sesion.refresh(foto_bd)
+        print(foto_esquema)
+        return foto_esquema
+    else:
+        respuesta = {"mensaje" : "Foto no encontrada"}
+        return respuesta
+    
