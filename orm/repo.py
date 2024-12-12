@@ -66,5 +66,19 @@ def elimina_Foto_ID(sesion: Session, id: int):
 ▪ DELETE FROM app.calificaciones WHERE id_alumnos={id_al}
 ▪ DELETE FROM app.fotos WHERE id_alumnos={id_al}"""
 
+# Guardamos al alumno
 
+def guarda_alumno(session:Session, alumno_nuevo:esquemas.alumnoBase): 
+    alumno_bd = modelos.Alumno()
+    alumno_bd.nombre = alumno_nuevo.nombre
+    alumno_bd.edad = alumno_nuevo.edad
+    alumno_bd.domicilio = alumno_nuevo.domicilio
+    alumno_bd.carrera = alumno_nuevo.carrera
+    alumno_bd.trimestre = alumno_nuevo.trimestre
+    alumno_bd.email = alumno_nuevo.email
+    alumno_bd.password = alumno_nuevo.password
 
+    session.add(alumno_bd)
+    session.commit()
+    session.refresh(alumno_bd)
+    return alumno_bd
