@@ -1,6 +1,8 @@
 from fastapi import FastAPI, UploadFile, File, Form, Depends
 from typing import Optional
 from pydantic import BaseModel
+import orm.repo as repo
+import orm.esquemas as esquemas
 import shutil
 import os
 import uuid
@@ -107,4 +109,11 @@ o post("/alumnos/{id}/calificaciones")
 o put("/calificaciones/{id}")
 o post("/alumnos/{id}/fotos")
 o put("/fotos/{id}")"""
+
+#o post("/alumnos”)
+
+@app.post("/alumnos")
+def guarda_alumno(alumno:esquemas.alumnoBase, sesion:Session=Depends(generador_sesion)):
+    print(alumno)
+    return repo.guarda_alumno(sesion, alumno)
 
