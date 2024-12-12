@@ -15,8 +15,7 @@ class Alumno(BaseClass):
     password = Column(String(100))
     fecha_registro = Column(DateTime(timezone=True), default=datetime.datetime.now)
 
-# Tabla Calificaciones
-class Calificacion(BaseClass):
+# Tabla Calificaciones class Calificacion(BaseClass):
     __tablename__ = "calificaciones"
     id = Column(Integer, primary_key=True)
     id_alumno = Column(Integer)
