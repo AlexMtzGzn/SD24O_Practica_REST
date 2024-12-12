@@ -130,3 +130,8 @@ def guarda_Calificacion_ID_Alumno(id:int, calificacion:esquemas.CalificacioneBas
 @app.put("/calificaciones/{id}")
 def actualiza_Calificacion_ID(id:int, datos_calificacion:esquemas.CalificacioneBase, sesion:Session=Depends(generador_sesion)):
     return repo.actualiza_Calificacion_ID(sesion, id, datos_calificacion)
+
+#o post("/alumnos/{id}/fotos")
+@app.post("/alumnos/{id}/fotos")
+def guarda_Calificacion_ID_Alumno(id:int, foto:esquemas.FotoBase, sesion:Session=Depends(generador_sesion)):
+    return repo.guarda_Foto_ID_Alumno(sesion, id, foto)

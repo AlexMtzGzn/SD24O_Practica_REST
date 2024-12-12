@@ -129,3 +129,19 @@ def actualiza_Calificacion_ID(sesion:Session, id_calificacion:int, calificacion_
     else:
         respuesta = {"mensaje" : "Calificación no encontrada"}
         return respuesta
+
+def guarda_Foto_ID_Alumno(sesion:Session, id_alumno:int, foto_nueva:esquemas.FotoBase):
+    foto = regresa_Alumno_ID(sesion, id_alumno)
+    foto_bd = modelos.Foto()
+    if foto is not None:
+        foto_bd.id_alumno = id_alumno
+        foto_bd.titulo = foto_nueva.titulo
+        foto_bd.descripcion = foto_nueva.descripcion
+        foto_bd.ruta = foto_nueva.ruta
+        sesion.add(foto_bd)
+        sesion.commit()
+        sesion.refresh(foto_bd)
+        return foto_bd
+    else:
+        respuesta = {"mensaje" : "Alumno no encontrado"}
+        return respuesta
