@@ -49,14 +49,6 @@ def leer_alumnos(sesion: Session = Depends(generador_sesion)):
     calificaciones = repo.regresa_Calificaciones(sesion)
     return calificaciones
 
-@app.delete("/calificaciones/{id}")
-def eliminar_calificacion(id: int, sesion: Session = Depends(generador_sesion)):
-    print(f"API eliminando calificación {id}")
-    calificacion = repo.regresa_Calificaciones_ID(sesion, id_calificacion=id)
-    repo.elimina_Calificacion_ID(sesion, id_calificacion=id)
-    return {"message": "Calificación eliminada"}
-
-
 @app.get("/alumnos/{id}/calificaciones")
 def leer_calificaciones(id: int, sesion: Session = Depends(generador_sesion)):
     print(f"API consultando calificaciones del alumno {id}.")
@@ -85,7 +77,7 @@ def eliminar_foto(id: int, sesion: Session = Depends(generador_sesion)):
 @app.delete("/calificaciones/{id}")
 def eliminar_calificacion(id: int, sesion: Session = Depends(generador_sesion)):
     calificacion = repo.regresa_Calificaciones_ID(sesion, id_calificacion=id)
-    repo.elimina_Calificacion_ID(sesion, id_alumno=id)
+    repo.elimina_Calificacion_ID(sesion, id_calificacion==id)
     return {"message": "Calificación eliminada"}
 
 """Atiende las siguientes peticiones del tipo PUT y POST:
@@ -105,8 +97,8 @@ def guarda_Alumno(alumno:esquemas.alumnoBase, sesion:Session=Depends(generador_s
 
 #o put("/alumnos/{id})
 @app.put("/alumnos/{id}")
-def actualiza_Alumno(id:int, datos_alumno:esquemas.alumnoBase, sesion:Session=Depends(generador_sesion)):
-    return repo.actualiza_alumno(sesion, id, datos_alumno)
+def actualiza_Alumno(id_alumno:int, datos_alumno:esquemas.alumnoBase, sesion:Session=Depends(generador_sesion)):
+    return repo.actualiza_alumno(sesion, id_alumno, datos_alumno)
 
 #o post("/alumnos/{id}/calificaciones")
 @app.post("/alumnos/{id}/calificaciones")
