@@ -64,3 +64,6 @@ def elimina_Foto_ID(sesion: Session, id: int):
 ▪ DELETE FROM app.alumnos WHERE id_alumnos={id_al}
 ▪ DELETE FROM app.calificaciones WHERE id_alumnos={id_al}
 ▪ DELETE FROM app.fotos WHERE id_alumnos={id_al}"""
+
+
+

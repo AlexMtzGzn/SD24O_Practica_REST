@@ -98,3 +98,16 @@ def eliminar_calificacion(id: int, sesion: Session = Depends(generador_sesion)):
         raise HTTPException(status_code=404, detail="Calificación no encontrada")
     repo.elimina_Calificacion_ID(sesion, id_alumno=id)
     return {"message": "Calificación eliminada"}
+
+"""Atiende las siguientes peticiones del tipo PUT y POST:
+
+o post("/alumnos”)
+o put("/alumnos/{id})
+o post("/alumnos/{id}/calificaciones")
+o put("/calificaciones/{id}")
+o post("/alumnos/{id}/fotos")
+o put("/fotos/{id}")"""
+
+@app.post("/alumnos")
+def insertar_alumno(nombre:str,edad:int,domicilio:str):
+    
