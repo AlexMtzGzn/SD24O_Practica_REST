@@ -41,8 +41,6 @@ def leer_fotos_id(id: int, sesion: Session = Depends(generador_sesion)):
 def leer_foto_id_alumno(id: int, alumno: int, sesion: Session = Depends(generador_sesion)):
     print(f"API consultando foto {id} del alumno {alumno}")
     foto = repo.regresa_Foto_ID_Alumno(sesion, id_foto=id, id_alumno=alumno)
-    if not foto:
-        raise HTTPException(status_code=404, detail="Foto no encontrada")
     return foto
 
 @app.get("/calificaciones")
@@ -55,8 +53,6 @@ def leer_alumnos(sesion: Session = Depends(generador_sesion)):
 def eliminar_calificacion(id: int, sesion: Session = Depends(generador_sesion)):
     print(f"API eliminando calificación {id}")
     calificacion = repo.regresa_Calificaciones_ID(sesion, id_calificacion=id)
-    if not calificacion:
-        raise HTTPException(status_code=404, detail="Calificación no encontrada")
     repo.elimina_Calificacion_ID(sesion, id_calificacion=id)
     return {"message": "Calificación eliminada"}
 
@@ -77,24 +73,18 @@ def leer_fotos_alumno(id: int, sesion: Session = Depends(generador_sesion)):
 @app.delete("/alumnos/{id}")
 def eliminar_alumno(id: int, sesion: Session = Depends(generador_sesion)):
     alumno = repo.regresa_Alumno_ID(sesion, id_alumno=id)
-    if not alumno:
-        raise HTTPException(status_code=404, detail="Alumno no encontrado")
     repo.elimina_Alumno_ID(sesion, id_alumno=id)
     return {"message": "Alumno eliminado"}
 
 @app.delete("/fotos/{id}")
 def eliminar_foto(id: int, sesion: Session = Depends(generador_sesion)):
     foto = repo.regresa_Foto_ID(sesion, id_foto=id)
-    if not foto:
-        raise HTTPException(status_code=404, detail="Foto no encontrada")
     repo.elimina_Foto_ID(sesion, id=id)
     return {"message": "Foto eliminada"}
 
 @app.delete("/calificaciones/{id}")
 def eliminar_calificacion(id: int, sesion: Session = Depends(generador_sesion)):
     calificacion = repo.regresa_Calificaciones_ID(sesion, id_calificacion=id)
-    if not calificacion:
-        raise HTTPException(status_code=404, detail="Calificación no encontrada")
     repo.elimina_Calificacion_ID(sesion, id_alumno=id)
     return {"message": "Calificación eliminada"}
 
