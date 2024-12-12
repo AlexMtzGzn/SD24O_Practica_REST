@@ -68,7 +68,7 @@ def elimina_Foto_ID(sesion: Session, id: int):
 
 # Guardamos al alumno
 
-def guarda_alumno(session:Session, alumno_nuevo:esquemas.alumnoBase): 
+def inserta_alumno(session:Session, alumno_nuevo:esquemas.alumnoBase): 
     alumno_bd = modelos.Alumno()
     alumno_bd.nombre = alumno_nuevo.nombre
     alumno_bd.edad = alumno_nuevo.edad
@@ -82,3 +82,21 @@ def guarda_alumno(session:Session, alumno_nuevo:esquemas.alumnoBase):
     session.commit()
     session.refresh(alumno_bd)
     return alumno_bd
+
+def actualiza_alumno(sesion:Session, id_alumno:int, alumno_esquema:esquemas.alumnoBase): 
+    alumno_db = regresa_Alumno_ID(sesion, id_alumno)
+    if alumno_db is not None:
+        alumno_db.nombre = alumno_esquema.nombre
+        alumno_db.edad = alumno_esquema.edad
+        alumno_db.domicilio = alumno_esquema.domicilio
+        alumno_db.carrera = alumno_esquema.carrera
+        alumno_db.trimestre = alumno_esquema.trimestre
+        alumno_db.email = alumno_esquema.email
+        alumno_db.password = alumno_esquema.password
+        sesion.commit()
+        sesion.refresh(alumno_db)
+        print(alumno_esquema)
+        return alumno_esquema
+    else:
+        respuesta = {"mensaje" : "No existe el alumno"}
+        return respuesta
