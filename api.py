@@ -108,6 +108,3 @@ o put("/calificaciones/{id}")
 o post("/alumnos/{id}/fotos")
 o put("/fotos/{id}")"""
 
-@app.post("/alumnos")
-def insertar_alumno(nombre:str,edad:int,domicilio:str):
-    
