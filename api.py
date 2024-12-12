@@ -77,7 +77,7 @@ def eliminar_foto(id: int, sesion: Session = Depends(generador_sesion)):
 @app.delete("/calificaciones/{id}")
 def eliminar_calificacion(id: int, sesion: Session = Depends(generador_sesion)):
     calificacion = repo.regresa_Calificaciones_ID(sesion, id_calificacion=id)
-    repo.elimina_Calificacion_ID(sesion, id_calificacion==id)
+    repo.elimina_Calificacion_ID(sesion, calificacion==id)
     return {"message": "Calificación eliminada"}
 
 """Atiende las siguientes peticiones del tipo PUT y POST:

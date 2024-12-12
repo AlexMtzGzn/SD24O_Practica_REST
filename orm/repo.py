@@ -101,7 +101,7 @@ def actualiza_Alumno(sesion:Session, id_alumno:int, alumno_esquema:esquemas.alum
     else:
         respuesta = {"mensaje" : "Alumno no encontrado"}
         return respuesta
-
+    
 def guarda_Calificacion_ID_Alumno(sesion:Session, id_alumno:int, calificacion_nueva:esquemas.calificacionBase):
     alumno = regresa_Alumno_ID(sesion, id_alumno)
     calificacion_bd = modelos.Calificacion()
