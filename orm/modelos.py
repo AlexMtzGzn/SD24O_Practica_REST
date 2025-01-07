@@ -1,4 +1,4 @@
-from orm.config import BaseClass
+#from orm.config import BaseClass
 from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, Float
 from sqlalchemy.ext.declarative import declarative_base
 import datetime
