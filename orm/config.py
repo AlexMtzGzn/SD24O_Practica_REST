@@ -11,7 +11,8 @@ import os
 #                            "options": "-csearch_path=app"  #Para que la BD se conecte por medio del esquema
 #                        })
 
-engine = create_engine(os.getenv("db_url","sqlite://base-ejemplo.db"))
+engine = create_engine(os.getenv("db_uri","sqlite://base-ejemplo.db"))
+modelos.BaseClass.metadata.create_all(engine)
 
 SessionClass = sessionmaker(engine) 
 
@@ -23,4 +24,3 @@ def generador_sesion():
     finally: 
         sesion.close()
 
-BaseClass = declarative_base()
