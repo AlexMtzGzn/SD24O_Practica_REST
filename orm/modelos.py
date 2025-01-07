@@ -21,7 +21,8 @@ class Alumno(BaseClass):
     id_alumno = Column(Integer)
     uea = Column(String(100))
     calificacion = Column(String(100))
-    id_alumno = Column(Integer, ForeignKey(Alumno.id))
+    id_alumno = Column(Integer, ForeignKey('alumno.id'))
+
 
 # Tabla fotos
 class Foto(BaseClass):
